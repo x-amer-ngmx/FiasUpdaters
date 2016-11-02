@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FIAS" Class="FiasDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.ActualStatus" Member="ActualStatus">
+    <Type Name="ActualStatus">
+      <Column Name="ACTSTATID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="ActualStatus_AddressObjects" Member="AddressObjects" ThisKey="ACTSTATID" OtherKey="ACTSTATUS" Type="AddressObjects" />
+      <Association Name="ActualStatus_DellAddressObjects" Member="DellAddressObjects" ThisKey="ACTSTATID" OtherKey="ACTSTATUS" Type="DellAddressObjects" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StructureStatuses" Member="StructureStatuses">
+    <Type Name="StructureStatuses">
+      <Column Name="STRSTATID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="SHORTNAME" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Association Name="StructureStatuses_DellHouses" Member="DellHouses" ThisKey="STRSTATID" OtherKey="STRSTATUS" Type="DellHouses" />
+      <Association Name="StructureStatuses_Houses" Member="Houses" ThisKey="STRSTATID" OtherKey="STRSTATUS" Type="Houses" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AddressObjects" Member="AddressObjects">
+    <Type Name="AddressObjects">
+      <Column Name="AOID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AOGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PARENTGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="NEXTID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="PREVID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="FORMALNAME" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="REGIONCODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AUTOCODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AREACODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CITYCODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CTARCODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="PLACECODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="STREETCODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="EXTRCODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SEXTCODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="OFFNAME" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="POSTALCODE" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="IFNSFL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="TERRIFNSFL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="IFNSUL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="TERRIFNSUL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="OKATO" Type="System.String" DbType="NChar(11)" CanBeNull="true" />
+      <Column Name="OKTMO" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="UPDATEDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SHORTNAME" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AOLEVEL" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CODE" Type="System.String" DbType="VarChar(17)" CanBeNull="true" />
+      <Column Name="PLAINCODE" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="ACTSTATUS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CENTSTATUS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OPERSTATUS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CURRSTATUS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="STARTDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ENDDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="NORMDOC" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="LIVESTATUS" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="ActualStatus_AddressObjects" Member="ActualStatus" ThisKey="ACTSTATUS" OtherKey="ACTSTATID" Type="ActualStatus" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="AddressObjectsAllKey_AddressObjects" Member="AddressObjectsAllKey" ThisKey="AOGUID" OtherKey="AOGUID" Type="AddressObjectsAllKey" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="CenterStatuses_AddressObjects" Member="CenterStatuses" ThisKey="CENTSTATUS" OtherKey="CENTERSTID" Type="CenterStatuses" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="CurrentStatuses_AddressObjects" Member="CurrentStatuses" ThisKey="CURRSTATUS" OtherKey="CURENTSTID" Type="CurrentStatuses" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="OperationStatuses_AddressObjects" Member="OperationStatuses" ThisKey="OPERSTATUS" OtherKey="OPERSTATID" Type="OperationStatuses" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AddressObjectsAllKey" Member="AddressObjectsAllKey">
+    <Type Name="AddressObjectsAllKey">
+      <Column Name="AOGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="AddressObjectsAllKey_AddressObjects" Member="AddressObjects" ThisKey="AOGUID" OtherKey="AOGUID" Type="AddressObjects" />
+      <Association Name="AddressObjectsAllKey_DellAddressObjects" Member="DellAddressObjects" ThisKey="AOGUID" OtherKey="AOGUID" Type="DellAddressObjects" />
+      <Association Name="AddressObjectsAllKey_DellHouseIntervals" Member="DellHouseIntervals" ThisKey="AOGUID" OtherKey="AOGUID" Type="DellHouseIntervals" />
+      <Association Name="AddressObjectsAllKey_DellHouses" Member="DellHouses" ThisKey="AOGUID" OtherKey="AOGUID" Type="DellHouses" />
+      <Association Name="AddressObjectsAllKey_HouseIntervals" Member="HouseIntervals" ThisKey="AOGUID" OtherKey="AOGUID" Type="HouseIntervals" />
+      <Association Name="AddressObjectsAllKey_Houses" Member="Houses" ThisKey="AOGUID" OtherKey="AOGUID" Type="Houses" />
+      <Association Name="AddressObjectsAllKey_Landmarks" Member="Landmarks" ThisKey="AOGUID" OtherKey="AOGUID" Type="Landmarks" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AddressObjectTypes" Member="AddressObjectTypes">
+    <Type Name="AddressObjectTypes">
+      <Column Name="KOD_T_ST" Type="System.String" DbType="VarChar(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[LEVEL]" Member="LEVEL" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SCNAME" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SOCRNAME" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CenterStatuses" Member="CenterStatuses">
+    <Type Name="CenterStatuses">
+      <Column Name="CENTERSTID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="CenterStatuses_AddressObjects" Member="AddressObjects" ThisKey="CENTERSTID" OtherKey="CENTSTATUS" Type="AddressObjects" />
+      <Association Name="CenterStatuses_DellAddressObjects" Member="DellAddressObjects" ThisKey="CENTERSTID" OtherKey="CENTSTATUS" Type="DellAddressObjects" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CurrentStatuses" Member="CurrentStatuses">
+    <Type Name="CurrentStatuses">
+      <Column Name="CURENTSTID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="CurrentStatuses_AddressObjects" Member="AddressObjects" ThisKey="CURENTSTID" OtherKey="CURRSTATUS" Type="AddressObjects" />
+      <Association Name="CurrentStatuses_DellAddressObjects" Member="DellAddressObjects" ThisKey="CURENTSTID" OtherKey="CURRSTATUS" Type="DellAddressObjects" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DellAddressObjects" Member="DellAddressObjects">
+    <Type Name="DellAddressObjects">
+      <Column Name="AOID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AOGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FORMALNAME" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="REGIONCODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AUTOCODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AREACODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CITYCODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CTARCODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="PLACECODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="STREETCODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="EXTRCODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SEXTCODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="OFFNAME" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="POSTALCODE" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="IFNSFL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="TERRIFNSFL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="IFNSUL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="TERRIFNSUL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="OKATO" Type="System.String" DbType="NChar(11)" CanBeNull="true" />
+      <Column Name="OKTMO" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="UPDATEDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SHORTNAME" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AOLEVEL" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PARENTGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="PREVID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="NEXTID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CODE" Type="System.String" DbType="VarChar(17)" CanBeNull="true" />
+      <Column Name="PLAINCODE" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="ACTSTATUS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CENTSTATUS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OPERSTATUS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CURRSTATUS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="STARTDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ENDDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="NORMDOC" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="LIVESTATUS" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="ActualStatus_DellAddressObjects" Member="ActualStatus" ThisKey="ACTSTATUS" OtherKey="ACTSTATID" Type="ActualStatus" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="AddressObjectsAllKey_DellAddressObjects" Member="AddressObjectsAllKey" ThisKey="AOGUID" OtherKey="AOGUID" Type="AddressObjectsAllKey" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="CenterStatuses_DellAddressObjects" Member="CenterStatuses" ThisKey="CENTSTATUS" OtherKey="CENTERSTID" Type="CenterStatuses" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="CurrentStatuses_DellAddressObjects" Member="CurrentStatuses" ThisKey="CURRSTATUS" OtherKey="CURENTSTID" Type="CurrentStatuses" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="OperationStatuses_DellAddressObjects" Member="OperationStatuses" ThisKey="OPERSTATUS" OtherKey="OPERSTATID" Type="OperationStatuses" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DellHouseIntervals" Member="DellHouseIntervals">
+    <Type Name="DellHouseIntervals">
+      <Column Name="HOUSEINTID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="INTGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="AOGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="POSTALCODE" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="IFNSFL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="TERRIFNSFL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="IFNSUL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="TERRIFNSUL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="OKATO" Type="System.String" DbType="NChar(11)" CanBeNull="true" />
+      <Column Name="OKTMO" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="UPDATEDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="INTSTART" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="INTEND" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="STARTDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ENDDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="INTSTATUS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NORMDOC" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="COUNTER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="AddressObjectsAllKey_DellHouseIntervals" Member="AddressObjectsAllKey" ThisKey="AOGUID" OtherKey="AOGUID" Type="AddressObjectsAllKey" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="IntervalStatuses_DellHouseIntervals" Member="IntervalStatuses" ThisKey="INTSTATUS" OtherKey="INTVSTATID" Type="IntervalStatuses" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DellHouses" Member="DellHouses">
+    <Type Name="DellHouses">
+      <Column Name="HOUSEID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AOGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="HOUSEGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="POSTALCODE" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Column Name="IFNSFL" Type="System.String" DbType="Char(4)" CanBeNull="true" />
+      <Column Name="TERRIFNSFL" Type="System.String" DbType="Char(4)" CanBeNull="true" />
+      <Column Name="IFNSUL" Type="System.String" DbType="Char(4)" CanBeNull="true" />
+      <Column Name="TERRIFNSUL" Type="System.String" DbType="Char(4)" CanBeNull="true" />
+      <Column Name="OKATO" Type="System.String" DbType="Char(11)" CanBeNull="true" />
+      <Column Name="OKTMO" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="UPDATEDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="HOUSENUM" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ESTSTATUS" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="BUILDNUM" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="STRUCNUM" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="STRSTATUS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="STARTDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ENDDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="STATSTATUS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="COUNTER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NORMDOC" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="AddressObjectsAllKey_DellHouses" Member="AddressObjectsAllKey" ThisKey="AOGUID" OtherKey="AOGUID" Type="AddressObjectsAllKey" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="StructureStatuses_DellHouses" Member="StructureStatuses" ThisKey="STRSTATUS" OtherKey="STRSTATID" Type="StructureStatuses" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="EstateStatuses_DellHouses" Member="EstateStatuses" ThisKey="ESTSTATUS" OtherKey="ESTSTATID" Type="EstateStatuses" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="HouseStateStatuses_DellHouses" Member="HouseStateStatuses" ThisKey="STRSTATUS" OtherKey="HOUSESTID" Type="HouseStateStatuses" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DellNormativeDocument" Member="DellNormativeDocument">
+    <Type Name="DellNormativeDocument">
+      <Column Name="NORMDOCID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DOCNAME" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DOCDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DOCNUM" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DOCTYPE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DOCIMGID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="NormativeDocumentTypes_DellNormativeDocument" Member="NormativeDocumentTypes" ThisKey="DOCTYPE" OtherKey="NDTYPEID" Type="NormativeDocumentTypes" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EstateStatuses" Member="EstateStatuses">
+    <Type Name="EstateStatuses">
+      <Column Name="ESTSTATID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="SHORTNAME" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Association Name="EstateStatuses_DellHouses" Member="DellHouses" ThisKey="ESTSTATID" OtherKey="ESTSTATUS" Type="DellHouses" />
+      <Association Name="EstateStatuses_Houses" Member="Houses" ThisKey="ESTSTATID" OtherKey="ESTSTATUS" Type="Houses" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HouseIntervals" Member="HouseIntervals">
+    <Type Name="HouseIntervals">
+      <Column Name="HOUSEINTID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="INTGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="AOGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="POSTALCODE" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="IFNSFL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="TERRIFNSFL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="IFNSUL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="TERRIFNSUL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="OKATO" Type="System.String" DbType="NChar(11)" CanBeNull="true" />
+      <Column Name="OKTMO" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="UPDATEDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="INTSTART" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="INTEND" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="STARTDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ENDDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="INTSTATUS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NORMDOC" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="COUNTER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="AddressObjectsAllKey_HouseIntervals" Member="AddressObjectsAllKey" ThisKey="AOGUID" OtherKey="AOGUID" Type="AddressObjectsAllKey" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="IntervalStatuses_HouseIntervals" Member="IntervalStatuses" ThisKey="INTSTATUS" OtherKey="INTVSTATID" Type="IntervalStatuses" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Houses" Member="Houses">
+    <Type Name="Houses">
+      <Column Name="HOUSEID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AOGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="HOUSEGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="POSTALCODE" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Column Name="IFNSFL" Type="System.String" DbType="Char(4)" CanBeNull="true" />
+      <Column Name="TERRIFNSFL" Type="System.String" DbType="Char(4)" CanBeNull="true" />
+      <Column Name="IFNSUL" Type="System.String" DbType="Char(4)" CanBeNull="true" />
+      <Column Name="TERRIFNSUL" Type="System.String" DbType="Char(4)" CanBeNull="true" />
+      <Column Name="OKATO" Type="System.String" DbType="Char(11)" CanBeNull="true" />
+      <Column Name="OKTMO" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="UPDATEDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="HOUSENUM" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ESTSTATUS" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="BUILDNUM" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="STRUCNUM" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="STRSTATUS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="STARTDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ENDDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="STATSTATUS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="COUNTER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NORMDOC" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="AddressObjectsAllKey_Houses" Member="AddressObjectsAllKey" ThisKey="AOGUID" OtherKey="AOGUID" Type="AddressObjectsAllKey" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="EstateStatuses_Houses" Member="EstateStatuses" ThisKey="ESTSTATUS" OtherKey="ESTSTATID" Type="EstateStatuses" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="StructureStatuses_Houses" Member="StructureStatuses" ThisKey="STRSTATUS" OtherKey="STRSTATID" Type="StructureStatuses" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="HouseStateStatuses_Houses" Member="HouseStateStatuses" ThisKey="STRSTATUS" OtherKey="HOUSESTID" Type="HouseStateStatuses" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HouseStateStatuses" Member="HouseStateStatuses">
+    <Type Name="HouseStateStatuses">
+      <Column Name="HOUSESTID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
+      <Association Name="HouseStateStatuses_DellHouses" Member="DellHouses" ThisKey="HOUSESTID" OtherKey="STRSTATUS" Type="DellHouses" />
+      <Association Name="HouseStateStatuses_Houses" Member="Houses" ThisKey="HOUSESTID" OtherKey="STRSTATUS" Type="Houses" />
+    </Type>
+  </Table>
+  <Table Name="dbo.IntervalStatuses" Member="IntervalStatuses">
+    <Type Name="IntervalStatuses">
+      <Column Name="INTVSTATID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
+      <Association Name="IntervalStatuses_DellHouseIntervals" Member="DellHouseIntervals" ThisKey="INTVSTATID" OtherKey="INTSTATUS" Type="DellHouseIntervals" />
+      <Association Name="IntervalStatuses_HouseIntervals" Member="HouseIntervals" ThisKey="INTVSTATID" OtherKey="INTSTATUS" Type="HouseIntervals" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Landmarks" Member="Landmarks">
+    <Type Name="Landmarks">
+      <Column Name="LANDID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LANDGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="AOGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="LOCATION" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="POSTALCODE" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="IFNSFL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="TERRIFNSFL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="IFNSUL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="TERRIFNSUL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="OKATO" Type="System.String" DbType="NChar(11)" CanBeNull="true" />
+      <Column Name="OKTMO" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="UPDATEDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="STARTDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ENDDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="NORMDOC" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="AddressObjectsAllKey_Landmarks" Member="AddressObjectsAllKey" ThisKey="AOGUID" OtherKey="AOGUID" Type="AddressObjectsAllKey" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NormativeDocument" Member="NormativeDocument">
+    <Type Name="NormativeDocument">
+      <Column Name="NORMDOCID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DOCNAME" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DOCDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DOCNUM" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DOCTYPE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DOCIMGID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="NormativeDocumentTypes_NormativeDocument" Member="NormativeDocumentTypes" ThisKey="DOCTYPE" OtherKey="NDTYPEID" Type="NormativeDocumentTypes" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NormativeDocumentTypes" Member="NormativeDocumentTypes">
+    <Type Name="NormativeDocumentTypes">
+      <Column Name="NDTYPEID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Association Name="NormativeDocumentTypes_DellNormativeDocument" Member="DellNormativeDocument" ThisKey="NDTYPEID" OtherKey="DOCTYPE" Type="DellNormativeDocument" />
+      <Association Name="NormativeDocumentTypes_NormativeDocument" Member="NormativeDocument" ThisKey="NDTYPEID" OtherKey="DOCTYPE" Type="NormativeDocument" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OperationStatuses" Member="OperationStatuses">
+    <Type Name="OperationStatuses">
+      <Column Name="OPERSTATID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="OperationStatuses_AddressObjects" Member="AddressObjects" ThisKey="OPERSTATID" OtherKey="OPERSTATUS" Type="AddressObjects" />
+      <Association Name="OperationStatuses_DellAddressObjects" Member="DellAddressObjects" ThisKey="OPERSTATID" OtherKey="OPERSTATUS" Type="DellAddressObjects" />
+    </Type>
+  </Table>
+  <Function Name="dbo.DELFROM" Method="DELFROM">
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.AddressObjects_INSERT" Method="AddressObjects_INSERT">
+    <Parameter Name="_AOID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="_AOGUID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="_PARENTGUID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="_NEXTID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="_PREVID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="_FORMALNAME" Type="System.String" DbType="VarChar(120)" />
+    <Parameter Name="_REGIONCODE" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_AUTOCODE" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_AREACODE" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_CITYCODE" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_CTARCODE" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_PLACECODE" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_STREETCODE" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_EXTRCODE" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_SEXTCODE" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_OFFNAME" Type="System.String" DbType="VarChar(120)" />
+    <Parameter Name="_POSTALCODE" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_IFNSFL" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_TERRIFNSFL" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_IFNSUL" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_TERRIFNSUL" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_OKATO" Type="System.String" DbType="NChar(11)" />
+    <Parameter Name="_OKTMO" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_UPDATEDATE" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="_SHORTNAME" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="_AOLEVEL" Type="System.Int32" DbType="Int" />
+    <Parameter Name="_CODE" Type="System.String" DbType="VarChar(17)" />
+    <Parameter Name="_PLAINCODE" Type="System.String" DbType="VarChar(15)" />
+    <Parameter Name="_ACTSTATUS" Type="System.Int32" DbType="Int" />
+    <Parameter Name="_CENTSTATUS" Type="System.Int32" DbType="Int" />
+    <Parameter Name="_OPERSTATUS" Type="System.Int32" DbType="Int" />
+    <Parameter Name="_CURRSTATUS" Type="System.Int32" DbType="Int" />
+    <Parameter Name="_STARTDATE" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="_ENDDATE" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="_NORMDOC" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="_LIVESTATUS" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.HouseIntervals_INSERT" Method="HouseIntervals_INSERT">
+    <Parameter Name="_HOUSEINTID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="_INTGUID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="_AOGUID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="_POSTALCODE" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_IFNSFL" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_TERRIFNSFL" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_IFNSUL" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_TERRIFNSUL" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_OKATO" Type="System.String" DbType="NChar(11)" />
+    <Parameter Name="_OKTMO" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_UPDATEDATE" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="_INTSTART" Type="System.Int32" DbType="Int" />
+    <Parameter Name="_INTEND" Type="System.Int32" DbType="Int" />
+    <Parameter Name="_STARTDATE" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="_ENDDATE" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="_INTSTATUS" Type="System.Int32" DbType="Int" />
+    <Parameter Name="_NORMDOC" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="_COUNTER" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Houses_INSERT" Method="Houses_INSERT">
+    <Parameter Name="_HOUSEID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="_AOGUID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="_HOUSEGUID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="_POSTALCODE" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="_IFNSFL" Type="System.String" DbType="Char(4)" />
+    <Parameter Name="_TERRIFNSFL" Type="System.String" DbType="Char(4)" />
+    <Parameter Name="_IFNSUL" Type="System.String" DbType="Char(4)" />
+    <Parameter Name="_TERRIFNSUL" Type="System.String" DbType="Char(4)" />
+    <Parameter Name="_OKATO" Type="System.String" DbType="Char(11)" />
+    <Parameter Name="_OKTMO" Type="System.String" DbType="Char(8)" />
+    <Parameter Name="_UPDATEDATE" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="_HOUSENUM" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="_ESTSTATUS" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="_BUILDNUM" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="_STRUCNUM" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="_STRSTATUS" Type="System.Int32" DbType="Int" />
+    <Parameter Name="_STARTDATE" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="_ENDDATE" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="_STATSTATUS" Type="System.Int32" DbType="Int" />
+    <Parameter Name="_COUNTER" Type="System.Int32" DbType="Int" />
+    <Parameter Name="_NORMDOC" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Landmarks_INSERT" Method="Landmarks_INSERT">
+    <Parameter Name="_LANDID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="_LANDGUID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="_AOGUID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="_LOCATION" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="_POSTALCODE" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_IFNSFL" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_TERRIFNSFL" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_IFNSUL" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_TERRIFNSUL" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_OKATO" Type="System.String" DbType="NChar(11)" />
+    <Parameter Name="_OKTMO" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="_UPDATEDATE" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="_STARTDATE" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="_ENDDATE" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="_NORMDOC" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
